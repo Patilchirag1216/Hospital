@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Health Hospital</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e'
+              }
+            },
+            boxShadow: {
+              glow: '0 10px 25px -5px rgba(56,189,248,.35), 0 8px 10px -6px rgba(14,165,233,.25)'
+            }
+          }
+        }
+      }
+    </script>
+
+    
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Meta -->
+    <meta name="description" content="Modern hospital website – appointments, doctors, departments, and patient care." />
+
+    <style>
+      /* Decorative gradient blobs */
+      .blob {
+        filter: blur(50px);
+        opacity: .35;
+        transform: translateZ(0);
+      }
+      .glass {
+        backdrop-filter: blur(10px);
+        background: linear-gradient(120deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
+      }
+      .dark .glass { background: linear-gradient(120deg, rgba(15,23,42,.6), rgba(15,23,42,.4)); }
+    </style>
+  
+  </head>
+
+  <body class="antialiased text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-slate-900">
+    <!-- Top notification bar -->
+    <div class="relative isolate overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <div class="blob absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-400"></div>
+        <div class="blob absolute -bottom-24 -right-24 w-[28rem] h-[28rem] rounded-full bg-indigo-400"></div>
+      </div>
+      <div class="mx-auto max-w-7xl px-4 py-2 text-center text-sm">
+        <!-- <p>
+          <span class="font-semibold">24×7 Emergency:</span>
+          <a href="tel:+910000000000" class="underline decoration-dotted underline-offset-4">+91 777 222 999</a>
+        </p> -->
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-white/90 dark:bg-slate-900/80 backdrop-blur">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+        <a href="#" class="flex items-center gap-2 group">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white shadow-glow"><i class="fa-solid fa-heart-pulse"></i></span>
+          <span class="text-lg font-bold tracking-tight">Health Hospital</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#" class="hover:text-brand-600">Home</a>
+          <a href="#services" class="hover:text-brand-600">Services</a>
+          <a href="#doctors" class="hover:text-brand-600">Doctors</a>
+          <a href="#departments" class="hover:text-brand-600">Departments</a>
+          <a href="#reviews" class="hover:text-brand-600">Reviews</a>
+          <a href="#contact" class="hover:text-brand-600">Contact</a>
+          <!-- <button id="darkToggle" class="rounded-xl px-3 py-2 text-sm border border-slate-200 dark:border-slate-700 hover:shadow">
+            <i class="fa-solid fa-moon"></i>
+          </button> -->
+          <a href="#appointment" class="rounded-xl bg-brand-600 px-4 py-2 text-white hover:bg-brand-700 shadow-glow">Book Appointment</a>
+        </div>
+
+        <button id="menuBtn" class="md:hidden rounded-xl border px-3 py-2"><i class="fa-solid fa-bars"></i></button>
+      </nav>
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden border-t bg-white dark:bg-slate-900">
+        <div class="mx-auto max-w-7xl px-4 py-3 grid gap-3">
+          <a href="#services" class="py-2">Services</a>
+          <a href="#doctors" class="py-2">Doctors</a>
+          <a href="#departments" class="py-2">Departments</a>
+          <a href="#reviews" class="py-2">Reviews</a>
+          <a href="#contact" class="py-2">Contact</a>
+          <a href="#appointment" class="mt-2 rounded-xl bg-brand-600 px-4 py-2 text-white">Book Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <svg class="absolute -top-20 left-1/2 -translate-x-1/2" width="1200" height="300" viewBox="0 0 1200 300" fill="none" aria-hidden="true">
+          <g opacity="0.2">
+            <circle cx="200" cy="150" r="150" fill="url(#g)" />
+            <circle cx="700" cy="80" r="120" fill="url(#g)" />
+            <circle cx="1050" cy="180" r="180" fill="url(#g)" />
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#38bdf8" />
+                <stop offset="1" stop-color="#818cf8" />
+              </linearGradient>
+            </defs>
+          </g>
+        </svg>
+      </div>
+      <div class="mx-auto max-w-7xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+        <div data-aos="fade-right" data-aos-duration="800">
+          <span class="inline-flex items-center gap-2 rounded-full bg-brand-100 text-brand-700 px-3 py-1 text-xs font-semibold">
+            <!-- <i class="fa-solid fa-stethoscope"></i> NABH Accredited Care -->
+          </span>
+          <h1 class="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+            
+Welcome to Health Hospital, Your Health, Our Priority, Trust Us. <span class="text-brand-600">Healthcare</span>
+          </h1>
+          <p class="mt-4 text-slate-600 dark:text-slate-300">
+            Multi-speciality hospital with expert doctors, modern equipment and 24×7 emergency services. Your wellbeing is our priority.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#appointment" class="rounded-xl bg-brand-600 px-5 py-3 text-white shadow-glow hover:-translate-y-0.5 transition">
+              Book Appointment
+            </a>
+            <a href="#services" class="rounded-xl border px-5 py-3 hover:shadow">
+              Explore Services
+            </a>
+          </div>
+          <div class="mt-6 flex items-center gap-6 text-sm text-slate-600 dark:text-slate-300">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-user-doctor"></i> 50+ Specialists</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-hospital"></i> 200 Bed Capacity</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-ambulance"></i> 24×7 Ambulance</div>
+          </div>
+        </div>
+        <div class="relative" data-aos="fade-left" data-aos-duration="800">
+          <div class="glass rounded-3xl p-3 shadow-glow">
+            <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1600&auto=format&fit=crop" alt="Hospital lobby" class="rounded-2xl" />
+          </div>
+          <div class="absolute -bottom-6 -left-6 glass rounded-2xl p-4 shadow-glow hidden md:block" data-aos="zoom-in" data-aos-delay="300">
+            <div class="text-sm">
+              <div class="font-semibold">Average Waiting Time</div>
+              <div class="text-brand-700 dark:text-brand-300 text-xl font-bold">&lt; 10 mins</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-16 md:py-24 bg-white dark:bg-slate-950">
+      <div class="mx-auto max-w-7xl px-4">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold">Our Services</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Comprehensive care across multiple specialities</p>
+        </div>
+
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card -->
+          <article class="rounded-2xl border p-6 bg-white/70 dark:bg-slate-900/60 hover:shadow-glow transition" data-aos="fade-up">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-700"><i class="fa-solid fa-heart-pulse"></i></span>
+              <h3 class="font-semibold">Cardiology</h3>
+            </div>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Advanced diagnostics & interventional cardiology with cath lab support.</p>
+          </article>
+          <article class="rounded-2xl border p-6 bg-white/70 dark:bg-slate-900/60 hover:shadow-glow transition" data-aos="fade-up" data-aos-delay="50">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-700"><i class="fa-solid fa-brain"></i></span>
+              <h3 class="font-semibold">Neurology</h3>
+            </div>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Stroke care, epilepsy clinic and neuro-rehabilitation.</p>
+          </article>
+          <article class="rounded-2xl border p-6 bg-white/70 dark:bg-slate-900/60 hover:shadow-glow transition" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-700"><i class="fa-solid fa-baby"></i></span>
+              <h3 class="font-semibold">Gynecology & IVF</h3>
+            </div>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Maternity services, fertility counseling and NICU support.</p>
+          </article>
+          <article class="rounded-2xl border p-6 bg-white/70 dark:bg-slate-900/60 hover:shadow-glow transition" data-aos="fade-up">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-700"><i class="fa-solid fa-syringe"></i></span>
+              <h3 class="font-semibold">General Surgery</h3>
+            </div>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Laparoscopic procedures with rapid recovery.</p>
+          </article>
+          <article class="rounded-2xl border p-6 bg-white/70 dark:bg-slate-900/60 hover:shadow-glow transition" data-aos="fade-up" data-aos-delay="50">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-700"><i class="fa-solid fa-tooth"></i></span>
+              <h3 class="font-semibold">Dental Care</h3>
+            </div>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Cosmetic dentistry, implants and routine care.</p>
+          </article>
+          <article class="rounded-2xl border p-6 bg-white/70 dark:bg-slate-900/60 hover:shadow-glow transition" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-700"><i class="fa-solid fa-x-ray"></i></span>
+              <h3 class="font-semibold">Diagnostics</h3>
+            </div>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">MRI, CT, ultrasound, lab services with online reports.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Doctors -->
+    <section id="doctors" class="py-16 md:py-24">
+      <div class="mx-auto max-w-7xl px-4">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold">Meet Our Specialists</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Experienced, empathetic and patient-first</p>
+        </div>
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Doctor card template: duplicate as needed -->
+          <div class="group rounded-2xl border p-6 bg-white dark:bg-slate-900 hover:shadow-glow transition" data-aos="zoom-in">
+            <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464?q=80&w=800&auto=format&fit=crop" class="h-48 w-full object-cover rounded-xl" alt="Doctor"/>
+            <div class="mt-4">
+              <div class="font-semibold">Dr. Priya Sharma</div>
+              <div class="text-sm text-slate-600 dark:text-slate-300">Cardiologist</div>
+              <div class="mt-3 flex items-center gap-3 text-xs">
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-briefcase"></i> 12 yrs</span>
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.9</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="group rounded-2xl border p-6 bg-white dark:bg-slate-900 hover:shadow-glow transition" data-aos="zoom-in" data-aos-delay="50">
+            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=800&auto=format&fit=crop" class="h-48 w-full object-cover rounded-xl" alt="Doctor"/>
+            <div class="mt-4">
+              <div class="font-semibold">Dr. Arjun Mehta</div>
+              <div class="text-sm text-slate-600 dark:text-slate-300">Neurologist</div>
+              <div class="mt-3 flex items-center gap-3 text-xs">
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-briefcase"></i> 10 yrs</span>
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.8</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="group rounded-2xl border p-6 bg-white dark:bg-slate-900 hover:shadow-glow transition" data-aos="zoom-in" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?q=80&w=800&auto=format&fit=crop" class="h-48 w-full object-cover rounded-xl" alt="Doctor"/>
+            <div class="mt-4">
+              <div class="font-semibold">Dr. Kavya Nair</div>
+              <div class="text-sm text-slate-600 dark:text-slate-300">Gynecologist</div>
+              <div class="mt-3 flex items-center gap-3 text-xs">
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-briefcase"></i> 9 yrs</span>
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.9</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="group rounded-2xl border p-6 bg-white dark:bg-slate-900 hover:shadow-glow transition" data-aos="zoom-in" data-aos-delay="150">
+            <img src="https://images.unsplash.com/photo-1579684453241-9e9e3a4a7a31?q=80&w=800&auto=format&fit=crop" class="h-48 w-full object-cover rounded-xl" alt="Doctor"/>
+            <div class="mt-4">
+              <div class="font-semibold">Dr. Rohan Kulkarni</div>
+              <div class="text-sm text-slate-600 dark:text-slate-300">Orthopedic Surgeon</div>
+              <div class="mt-3 flex items-center gap-3 text-xs">
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-briefcase"></i> 11 yrs</span>
+                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Departments -->
+    <section id="departments" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-950">
+      <div class="mx-auto max-w-7xl px-4">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold">Departments</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">State-of-the-art facilities</p>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-3 gap-6">
+          <div class="rounded-2xl overflow-hidden border bg-white dark:bg-slate-900" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop" class="h-44 w-full object-cover" alt="ICU"/>
+            <div class="p-6">
+              <h3 class="font-semibold">ICU & Critical Care</h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">24×7 monitoring, ventilators and advanced life support.</p>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden border bg-white dark:bg-slate-900" data-aos="fade-up" data-aos-delay="50">
+            <img src="https://images.unsplash.com/photo-1580281657527-47dfb1a218a5?q=80&w=1600&auto=format&fit=crop" class="h-44 w-full object-cover" alt="OT"/>
+            <div class="p-6">
+              <h3 class="font-semibold">Operation Theatres</h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Laminar airflow OTs with infection control.</p>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden border bg-white dark:bg-slate-900" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1580699028963-652d3a74c2f0?q=80&w=1600&auto=format&fit=crop" class="h-44 w-full object-cover" alt="Diagnostics"/>
+            <div class="p-6">
+              <h3 class="font-semibold">Radiology & Lab</h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Comprehensive imaging and pathology lab.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appointment -->
+    <section id="appointment" class="py-16 md:py-24">
+      <div class="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-8 items-start">
+        <div data-aos="fade-right">
+          <h2 class="text-3xl md:text-4xl font-bold">Book an Appointment</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Quick, simple and paperless scheduling</p>
+          <ul class="mt-6 space-y-3 text-sm text-slate-700 dark:text-slate-300">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-brand-600"></i> Choose department & doctor</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-brand-600"></i> Pick a preferred date & time</li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-brand-600"></i> Get SMS & Email confirmation</li>
+          </ul>
+        </div>
+
+        <form id="apptForm" class="glass rounded-2xl p-6 border shadow-glow" data-aos="fade-left">
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label class="text-sm">Full Name</label>
+              <input name="name" class="mt-1 w-full rounded-xl border px-3 py-2 bg-white/80 dark:bg-slate-800/60" placeholder="John Doe" required />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-sm">Phone</label>
+                <input name="phone" type="tel" pattern="[0-9]{10}" class="mt-1 w-full rounded-xl border px-3 py-2 bg-white/80 dark:bg-slate-800/60" placeholder="9876543210" required />
+              </div>
+              <div>
+                <label class="text-sm">Email</label>
+                <input name="email" type="email" class="mt-1 w-full rounded-xl border px-3 py-2 bg-white/80 dark:bg-slate-800/60" placeholder="you@mail.com" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-sm">Department</label>
+                <select name="dept" class="mt-1 w-full rounded-xl border px-3 py-2 bg-white/80 dark:bg-slate-800/60" required>
+                  <option value="">Select</option>
+                  <option>Cardiology</option>
+                  <option>Neurology</option>
+                  <option>Gynecology</option>
+                  <option>Orthopedics</option>
+                  <option>Dental</option>
+                  <option>Diagnostics</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-sm">Preferred Date</label>
+                <input name="date" type="date" class="mt-1 w-full rounded-xl border px-3 py-2 bg-white/80 dark:bg-slate-800/60" required />
+              </div>
+            </div>
+            <div>
+              <label class="text-sm">Message (Optional)</label>
+              <textarea name="msg" rows="3" class="mt-1 w-full rounded-xl border px-3 py-2 bg-white/80 dark:bg-slate-800/60" placeholder="Briefly describe your concern..."></textarea>
+            </div>
+            <button class="mt-2 rounded-xl bg-brand-600 px-5 py-3 text-white hover:bg-brand-700">Submit Request</button>
+            <p id="apptSuccess" class="hidden text-sm text-green-600">Thank you! We will contact you shortly.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-16 md:py-24 bg-white dark:bg-slate-950">
+      <div class="mx-auto max-w-7xl px-4">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold">Patient Reviews</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Real stories. Real care.</p>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-3 gap-6">
+          <blockquote class="rounded-2xl border p-6 bg-white dark:bg-slate-900" data-aos="fade-up">
+            <div class="flex items-center gap-2 text-yellow-500"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+            <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">Prompt emergency care and very polite staff. Highly recommended!</p>
+            <footer class="mt-3 text-xs text-slate-500">— Ananya M.</footer>
+          </blockquote>
+          <blockquote class="rounded-2xl border p-6 bg-white dark:bg-slate-900" data-aos="fade-up" data-aos-delay="50">
+            <div class="flex items-center gap-2 text-yellow-500"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">Doctors are knowledgeable and explain everything clearly.</p>
+            <footer class="mt-3 text-xs text-slate-500">— Rahul S.</footer>
+          </blockquote>
+          <blockquote class="rounded-2xl border p-6 bg-white dark:bg-slate-900" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-2 text-yellow-500"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+            <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">Clean facilities and minimal waiting time. Great experience!</p>
+            <footer class="mt-3 text-xs text-slate-500">— Sneha K.</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 md:py-24">
+      <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-10 items-start">
+        <div data-aos="fade-right">
+          <h2 class="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Quick answers for common queries</p>
+        </div>
+        <div class="space-y-3" data-aos="fade-left">
+          <details class="group rounded-xl border p-4 bg-white dark:bg-slate-900">
+            <summary class="flex cursor-pointer items-center justify-between font-medium">Do you accept cashless insurance? <i class="fa-solid fa-plus group-open:rotate-45 transition"></i></summary>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Yes, we have tie-ups with major TPAs and insurers. Kindly carry your insurance card and ID proof.</p>
+          </details>
+          <details class="group rounded-xl border p-4 bg-white dark:bg-slate-900">
+            <summary class="flex cursor-pointer items-center justify-between font-medium">Is there 24×7 pharmacy and lab? <i class="fa-solid fa-plus group-open:rotate-45 transition"></i></summary>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Yes, our in-house pharmacy and sample collection are open round-the-clock.</p>
+          </details>
+          <details class="group rounded-xl border p-4 bg-white dark:bg-slate-900">
+            <summary class="flex cursor-pointer items-center justify-between font-medium">How can I get my reports online? <i class="fa-solid fa-plus group-open:rotate-45 transition"></i></summary>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Use your registered mobile number to login to our patient portal for downloadable reports.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-950">
+      <div class="mx-auto max-w-7xl px-4 grid lg:grid-cols-2 gap-8 items-center">
+        <div data-aos="fade-right">
+          <h2 class="text-3xl md:text-4xl font-bold">Contact & Location</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">We'd love to hear from you</p>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
+            <div class="rounded-2xl border p-4 bg-white dark:bg-slate-900">
+              <div class="font-semibold flex items-center gap-2"><i class="fa-solid fa-phone"></i> Phone</div>
+              <p class="mt-1 text-slate-600 dark:text-slate-300">+91 777 222 999</p>
+            </div>
+            <div class="rounded-2xl border p-4 bg-white dark:bg-slate-900">
+              <div class="font-semibold flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Email</div>
+              <p class="mt-1 text-slate-600 dark:text-slate-300"> Reach@Healthhospital.com</p>
+            </div>
+            <div class="rounded-2xl border p-4 bg-white dark:bg-slate-900">
+              <div class="font-semibold flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Address</div>
+              <p class="mt-1 text-slate-600 dark:text-slate-300">41 Health Street, Pune, India</p>
+            </div>
+            <div class="rounded-2xl border p-4 bg-white dark:bg-slate-900">
+              <div class="font-semibold flex items-center gap-2"><i class="fa-solid fa-clock"></i> Hours</div>
+              <p class="mt-1 text-slate-600 dark:text-slate-300">Mon–Sun: 24×7</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden border bg-white dark:bg-slate-900" data-aos="fade-left">
+<iframe 
+  title="Map" 
+  class="w-full h-80" 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15135.176197303994!2d73.8567436!3d18.5204303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c06d14a216a5%3A0x8a773f11c48b5a33!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1691578456789!5m2!1sen!2sin" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t">
+      <div class="mx-auto max-w-7xl px-4 py-8 grid md:grid-cols-3 gap-6 text-sm">
+        <div>
+          <div class="font-bold">Health Hospital</div>
+          <!-- <p class="mt-2 text-slate-600 dark:text-slate-300">NABH Accredited | Patient-first care</p> -->
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+            <div class="font-semibold">Quick Links</div>
+            <ul class="mt-2 space-y-2">
+              <li><a href="#" class="hover:underline">Home</a></li>
+              <li><a href="#services" class="hover:underline">Services</a></li>
+              <li><a href="#doctors" class="hover:underline">Doctors</a></li>
+              <li><a href="#appointment" class="hover:underline">Appointment</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold">Legal</div>
+            <ul class="mt-2 space-y-2">
+              <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+              <li><a href="#" class="hover:underline">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="md:text-right">
+          <p>&copy; <span id="year"></span> Health Hospital. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      // AOS init
+      AOS.init({ once: true, offset: 80 });
+
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      menuBtn?.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Dark mode toggle
+      const darkToggle = document.getElementById('darkToggle');
+      const isDark = () => localStorage.getItem('theme') === 'dark';
+      const applyTheme = () => {
+        if (isDark()) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+      };
+      applyTheme();
+      darkToggle?.addEventListener('click', () => {
+        localStorage.setItem('theme', isDark() ? 'light' : 'dark');
+        applyTheme();
+      });
+
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Appointment form handler (demo)
+      const form = document.getElementById('apptForm');
+      const ok = document.getElementById('apptSuccess');
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // TODO: replace with your backend endpoint
+        ok.classList.remove('hidden');
+        form.reset();
+      });
+    </script>
+  </body>
+</html>
